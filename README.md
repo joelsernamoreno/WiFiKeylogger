@@ -1,7 +1,6 @@
 Simple hardware keylogger with wireless connectivity (WiFi).
 
 
-TBD
 **Pinout ESP8266-01 programmer mode:**
 
 
