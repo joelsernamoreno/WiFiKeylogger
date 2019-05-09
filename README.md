@@ -1,42 +1,42 @@
 Simple hardware keylogger with wireless connectivity (WiFi).
 
-#HARDWARE REQUIREMENTS:
+## HARDWARE REQUIREMENTS:
 
 1. Arduino Pro Micro 3.3V
 2. ESP8266-01
 3. USB Host
 
-# PINOUT:
+## PINOUT:
 
 
-## Pineout Arduino Pro Micro:
-
-
-
-
-
-## Pineout ESP8266-01:
+### Pineout Arduino Pro Micro:
 
 
 
 
 
-## Pinout ESP8266-01 programmer mode:
+### Pineout ESP8266-01:
+
+
+
+
+
+### Pinout ESP8266-01 programmer mode:
 
 
 ![Pinout ESP8266-01 programmer mode](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/esp8266programmer.PNG)
 
 
-## Pinout WiFi Keylogger:
+### Pinout WiFi Keylogger:
 
 
 ![Pinout WiFi Keylogger](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/keylogger.PNG)
 
 
-# INSTALATION:
+## INSTALATION:
 
 
-## Software requirements:
+### Software requirements:
 
 1. Download and Install the Arduino IDE: https://www.arduino.cc/en/main/software
 2. Go to File - Preferences. Locate the field "Additional Board Manager URLs:" Add "http://arduino.esp8266.com/stable/package_esp8266com_index.json" without quotes. Click "Ok"
@@ -46,7 +46,7 @@ If Arduino IDE gives you the following error: "Error downloading http://arduino.
 3. Select Tools - Board - Boards Manager. Search for "esp8266". Install "esp8266 by ESP8266 community version 2.3.0". Click "Close".
 4. Download/extract WiFiKeylogger repository.
 
-## Programming mode ESP8266-01:
+### Programming mode ESP8266-01:
 
 
 1. Connect the breadboard to the computer with the circuit shown in the esp8266-01 programmer mode.
@@ -63,7 +63,7 @@ sudo python esptool.py --port=/dev/ttyUSB0 --baud 115200 write_flash 0x00000 /ho
 
 Windows: https://github.com/nodemcu/nodemcu-flasher
 
-## Upload WifiKeylogger sketch:
+### Upload WifiKeylogger sketch:
 
 1. Connect the breadboard to the computer with the circuit shown in the WiFi Keylogger pinout. 
 1. Open the WiFiKeylogger.ino sketch from the source folder.
