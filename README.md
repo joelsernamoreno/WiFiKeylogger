@@ -1,6 +1,6 @@
 Simple hardware keylogger with wireless connectivity (WiFi).
 
-## Hardwarw Requirements:
+## Hardware requirements:
 
 1. Arduino Pro Micro 3.3V
 2. ESP8266-01
@@ -9,7 +9,7 @@ Simple hardware keylogger with wireless connectivity (WiFi).
 ## Pinout:
 
 
-### Pinout Arduino Pro Micro:
+### Pinout arduino pro micro:
 
 
 
