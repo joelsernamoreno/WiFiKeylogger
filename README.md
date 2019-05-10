@@ -2,9 +2,9 @@ Simple hardware keylogger with wireless connectivity (WiFi).
 
 ## Configuration:
 
-**Default IP:** 192.168.4.1
-**Default SSID:** WiFiKeylogger
-**Default password:** hardwareKeylogger
+1. Default IP: 192.168.4.1
+2. Default SSID: WiFiKeylogger
+3. Default password: hardwareKeylogger
 
 ## Hardware requirements:
 
