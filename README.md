@@ -21,7 +21,7 @@ Simple hardware keylogger with wireless connectivity (WiFi).
 
 
 
-### Pinout ESP8266-01 programmer mode:
+### Pinout ESP8266-01 programming mode:
 
 
 ![Pinout ESP8266-01 programmer mode](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/esp8266programmer.PNG)
@@ -49,7 +49,7 @@ If Arduino IDE gives you the following error: "Error downloading http://arduino.
 ### Programming mode ESP8266-01:
 
 
-1. Connect the breadboard to the computer with the circuit shown in the esp8266-01 programmer mode.
+1. Connect the breadboard to the computer with the circuit shown in the esp8266-01 programming mode.
 2. Open the ESP8266-01.ino sketch from the source folder.
 3. Select Tools - Board - "Generic ESP8266 Module".
 4. Select Tools – Upload Speed “115200”.
@@ -57,11 +57,12 @@ If Arduino IDE gives you the following error: "Error downloading http://arduino.
 6. Select Sketch - "Export Compiled Binary".
 7. Now flash the firmware to the ESP chip using one of the following tools:
 
-Linux: https://github.com/AprilBrother/esptool
+**Linux:** https://github.com/AprilBrother/esptool
 
+sudo python esptool.py --port=/dev/ttyUSB0 erase_flash
 sudo python esptool.py --port=/dev/ttyUSB0 --baud 115200 write_flash 0x00000 /home/WiFiKeylogger/ESP8266-01/ESP8266-01.ino.generic.bin --flash_size 32m
 
-Windows: https://github.com/nodemcu/nodemcu-flasher
+**Windows:** https://github.com/nodemcu/nodemcu-flasher
 
 ### Upload WifiKeylogger sketch:
 
