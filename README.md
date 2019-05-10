@@ -1,5 +1,11 @@
 Simple hardware keylogger with wireless connectivity (WiFi).
 
+## Configuration:
+
+**Default IP:** 192.168.4.1
+**Default SSID:** WiFiKeylogger
+**Default password:** hardwareKeylogger
+
 ## Hardware requirements:
 
 1. Arduino Pro Micro 3.3V
