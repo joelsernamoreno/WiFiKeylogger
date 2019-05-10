@@ -27,6 +27,9 @@ Simple hardware keylogger with wireless connectivity (WiFi).
 ![Pinout arduino pro micro](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/esp8266-01_pinout.jpg)
 
 
+**Note:** You can also use the pro micro device to program the ESP8266-01 device. In the examples shown here, it has been divided into two circuits so that the user understands the different connections we need to use.
+
+
 ### Pinout USB host:
 
 
