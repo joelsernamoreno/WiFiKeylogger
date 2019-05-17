@@ -1,6 +1,6 @@
 Simple hardware keylogger with wireless connectivity (WiFi) with multiple layout support.
 
-**Attention: this repository is not finished, you can contact me by twitter if you have any questions**
+**This repository is not finished, you can contact me by twitter if you have any questions**
 
 Twitter: @JoelSernaMoreno
 
