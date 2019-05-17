@@ -1,4 +1,8 @@
-Simple hardware keylogger with wireless connectivity (WiFi).
+Simple hardware keylogger with wireless connectivity (WiFi) with multiple layout support.
+
+**Attention: this repository is not finished, you can contact me by twitter if you have any questions**
+
+Twitter: @JoelSernaMoreno
 
 ## Configuration:
 
@@ -36,7 +40,10 @@ Simple hardware keylogger with wireless connectivity (WiFi).
 ### Pinout ESP8266-01 programming mode:
 
 
-![Pinout ESP8266-01 programmer mode](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/esp8266programmer.PNG)
+![Pinout ESP8266-01 programming mode](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/esp8266programmer.PNG)
+
+
+![ESP8266-01 programming mode breadboard](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/esp_programming_breadboard.jpg)
 
 
 **Note:** You can also use the pro micro device to program the ESP8266-01 device. In the examples shown here, it has been divided into two circuits so that the user understands the different connections we need to use.
@@ -46,6 +53,8 @@ Simple hardware keylogger with wireless connectivity (WiFi).
 
 
 ![Pinout WiFi Keylogger](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/keylogger.PNG)
+
+![Keylogger breadboard](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/keylogger_breadboard.jpg)
 
 
 ## Instalation:
@@ -74,8 +83,8 @@ If Arduino IDE gives you the following error: "Error downloading http://arduino.
 
 **Linux:** https://github.com/AprilBrother/esptool
 
-sudo python esptool.py --port=/dev/ttyUSB0 erase_flash
-sudo python esptool.py --port=/dev/ttyUSB0 --baud 115200 write_flash 0x00000 /home/WiFiKeylogger/ESP8266-01/ESP8266-01.ino.generic.bin --flash_size 32m
+1. sudo python esptool.py --port=/dev/ttyUSB0 erase_flash
+2. sudo python esptool.py --port=/dev/ttyUSB0 --baud 115200 write_flash 0x00000 /home/WiFiKeylogger/ESP8266-01/ESP8266-01.ino.generic.bin --flash_size 32m
 
 **Windows:** https://github.com/nodemcu/nodemcu-flasher
 
