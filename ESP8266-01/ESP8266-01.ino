@@ -2899,7 +2899,6 @@ const char *password = "hardwareKeylogger"; //min 8 chars
 AsyncWebServer server(80);
 FSInfo fs_info;
 File logs;
-File logst;
 
 void setup() {
   
