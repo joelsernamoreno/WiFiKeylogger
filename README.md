@@ -57,7 +57,7 @@ Twitter: @JoelSernaMoreno
 ![Keylogger breadboard](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/keylogger_breadboard.jpg)
 
 
-## Instalation:
+## Installation:
 
 
 ### Software requirements:
