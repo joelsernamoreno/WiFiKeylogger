@@ -1,8 +1,21 @@
 Simple hardware keylogger with wireless connectivity (WiFi) with multiple layout support.
 
-**This repository is not finished, you can contact me by twitter if you have any questions**
+**This repository is not finished.**
+**I had problems with the old version of the code.**
 
-Twitter: @JoelSernaMoreno
+**Progress new code:**
+
+* ES_ES layout support: Code almost finished, you can test this code.
+* BE_BE layout support: New code coming soon.
+* CZ_CZ layout support: New code coming soon.
+* DA_DK layout support: New code coming soon.
+* DE_DE layout support: New code coming soon.
+* EN_US layout support: New code coming soon.
+* FI_FI layout support: New code coming soon.
+* FR_FR layout support: New code coming soon.
+* IT_IT layout support: New code coming soon.
+* PT_PT layout support: New code coming soon.
+* TR_TR layout support: New code coming soon.
 
 ## Configuration:
 
@@ -57,7 +70,7 @@ Twitter: @JoelSernaMoreno
 ![Keylogger breadboard](https://github.com/joelsernamoreno/WiFiKeylogger/blob/master/images/keylogger_breadboard.jpg)
 
 
-## Installation:
+## Instalation:
 
 
 ### Software requirements:
@@ -69,6 +82,7 @@ If Arduino IDE gives you the following error: "Error downloading http://arduino.
 
 3. Select Tools - Board - Boards Manager. Search for "esp8266". Install "esp8266 by ESP8266 community version 2.3.0". Click "Close".
 4. Download/extract WiFiKeylogger repository.
+5. Copy the Keyboard and USB Host Shield libraries included in this repository to your Arduino library directory. **NOTE:** The Keyboard library included in this repository has been modified, WiFiKeylogger needs this library to work.
 
 ### Programming mode ESP8266-01:
 
