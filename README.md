@@ -1,17 +1,20 @@
-Simple hardware keylogger with wireless connectivity (WiFi) with multiple layout support.
+Wi-Fi Keylogger with multiple layout support.
 
 **This repository is not finished.**
 **I had problems with the old version of the code.**
 
-**Progress new code:**
+**NOTE:** Some keys or modifiers are not implemented, this is a PoC. I don't have time or material to test all the keyboards.
+If you have any errors, you can contact me by Twitter: @JoelSernaMoreno
 
+**Layout:**
+
+* BE_BE layout support: Code almost finished, you can test this code.
+* CZ_CZ layout support: Code almost finished, you can test this code.
+* DA_DK layout support: Code almost finished, you can test this code.
+* DE_DE layout support: Code almost finished, you can test this code.
 * ES_ES layout support: Code almost finished, you can test this code.
-* BE_BE layout support: New code coming soon.
-* CZ_CZ layout support: New code coming soon.
-* DA_DK layout support: New code coming soon.
-* DE_DE layout support: New code coming soon.
-* EN_US layout support: New code coming soon.
-* FI_FI layout support: New code coming soon.
+* EN_US layout support: Code almost finished, you can test this code.
+* FI_FI layout support: Code almost finished, you can test this code.
 * FR_FR layout support: New code coming soon.
 * IT_IT layout support: New code coming soon.
 * PT_PT layout support: New code coming soon.
@@ -22,6 +25,7 @@ Simple hardware keylogger with wireless connectivity (WiFi) with multiple layout
 1. Default IP: 192.168.4.1
 2. Default SSID: WiFiKeylogger
 3. Default password: hardwareKeylogger
+4. Default layout: EN_US
 
 ## Hardware requirements:
 
