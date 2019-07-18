@@ -6,19 +6,21 @@ Wi-Fi Keylogger with multiple layout support.
 **NOTE:** Some keys or modifiers are not implemented, this is a PoC. I don't have time or material to test all the keyboards.
 If you have any errors, you can contact me by Twitter: @JoelSernaMoreno
 
-**Layout:**
+**Layouts:**
 
 * BE_BE layout support: Code almost finished, you can test this code.
-* CZ_CZ layout support: Code almost finished, you can test this code.
-* DA_DK layout support: Code almost finished, you can test this code.
 * DE_DE layout support: Code almost finished, you can test this code.
 * ES_ES layout support: Code almost finished, you can test this code.
 * EN_US layout support: Code almost finished, you can test this code.
 * FI_FI layout support: Code almost finished, you can test this code.
-* FR_FR layout support: New code coming soon.
-* IT_IT layout support: New code coming soon.
-* PT_PT layout support: New code coming soon.
-* TR_TR layout support: New code coming soon.
+* FR_FR layout support: Code almost finished, you can test this code.
+* IT_IT layout support: Code almost finished, you can test this code.
+* PT_PT layout support: Code almost finished, you can test this code.
+* TR_TR layout support: Code almost finished, you can test this code.
+
+**TODO:**
+* MORE LAYOUTS
+* ...
 
 ## Configuration:
 
